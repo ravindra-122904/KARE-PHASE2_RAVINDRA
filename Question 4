@@ -1,0 +1,40 @@
+class Node {
+    int data;
+    Node prev, next;
+
+    Node(int data) {
+        this.data = data;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Node a = new Node(30);
+        Node b = new Node(10);
+        Node c = new Node(20);
+
+        a.next = b;
+        b.prev = a;
+        b.next = c;
+        c.prev = b;
+
+        // Sorting
+        for (Node i = a; i != null; i = i.next) {
+            for (Node j = i.next; j != null; j = j.next) {
+                if (i.data > j.data) {
+                    int temp = i.data;
+                    i.data = j.data;
+                    j.data = temp;
+                }
+            }
+        }
+
+        // Print sorted list
+        Node temp = a;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+}
