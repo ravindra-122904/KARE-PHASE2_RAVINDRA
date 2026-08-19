@@ -1,0 +1,46 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Node n1 = new Node(30);
+        Node n2 = new Node(10);
+        Node n3 = new Node(20);
+
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n1;
+
+        Node i = n1;
+
+        do {
+            Node j = i.next;
+
+            while (j != n1) {
+                if (i.data > j.data) {
+                    int temp = i.data;
+                    i.data = j.data;
+                    j.data = temp;
+                }
+                j = j.next;
+            }
+
+            i = i.next;
+        } while (i != n1);
+
+        // Print sorted list
+        Node temp = n1;
+
+        do {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        } while (temp != n1);
+    }
+}
